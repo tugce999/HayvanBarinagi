@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HayvanBarinagi.Migrations
 {
-    [DbContext(typeof(DatabaseContex))]
-    [Migration("20230804170102_UserRoleUpdated")]
-    partial class UserRoleUpdated
+    [DbContext(typeof(_databaseContex))]
+    [Migration("20230804171741_usersUpdated")]
+    partial class usersUpdated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

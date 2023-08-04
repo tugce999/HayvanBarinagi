@@ -4,7 +4,7 @@ using System.Data;
 
 namespace HayvanBarinagi.Controllers
 {
-    //Bu SAYFAYA LOGIN OLAN KİŞİLER GIREBILIR
+    //Bu SAYFAYA Admin OLAN KİŞİLER GIREBILIR
 
     //[Authorize(Roles = "admin,manager")]
 

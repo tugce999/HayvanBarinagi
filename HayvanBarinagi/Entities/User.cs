@@ -21,7 +21,7 @@ namespace HayvanBarinagi.Entities
         public DateTime CreatedAdd { get; set; } = DateTime.Now;
 
         [Required]
-        [StringLength(50)]
-        public string? Role { get; set; }
+       [StringLength(50)]
+        public string Role { get; set; } = "user";
     }
 }

@@ -5,7 +5,7 @@
 namespace HayvanBarinagi.Migrations
 {
     /// <inheritdoc />
-    public partial class UserUpdated : Migration
+    public partial class usersUpdated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

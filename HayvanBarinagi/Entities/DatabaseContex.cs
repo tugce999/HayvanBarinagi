@@ -5,6 +5,10 @@ namespace HayvanBarinagi.Entities
 {
     public class DatabaseContex : DbContext
     {
+        public DatabaseContex()
+        {
+        }
+
         public DatabaseContex(DbContextOptions options) : base(options)
         {
 
