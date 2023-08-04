@@ -10,6 +10,7 @@ using HayvanBarinagi.Models;
 
 namespace HayvanBarinagi.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
 	{
 		private readonly DatabaseContex _databaseContex;
@@ -81,8 +82,10 @@ namespace HayvanBarinagi.Controllers
 					UserName = model.UserName,
 					Password = model.Password
 				};
+
 				_databaseContex.users.Add(user);
-				int affectedRowCount = _databaseContex.SaveChanges();
+			   int affectedRowCount = _databaseContex.SaveChanges();
+
 				if(affectedRowCount ==0)
 				{
 					ModelState.AddModelError("", "User can not added.");

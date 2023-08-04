@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HayvanBarinagi.Migrations
 {
     [DbContext(typeof(DatabaseContex))]
-    [Migration("20230804095341_UserRoleUpdated")]
+    [Migration("20230804170102_UserRoleUpdated")]
     partial class UserRoleUpdated
     {
         /// <inheritdoc />

@@ -5,11 +5,9 @@ namespace HayvanBarinagi.Models
     public class UserModel
     {
         public Guid Id { get; set; }
-        public string? FullName { get; set; } = null;
+        public string? NameSurname { get; set; } = null;
         public string Username { get; set; }
-        public bool Locked { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public string? ProfileImageFileName { get; set; } = "no-image.jpg";
         public string Role { get; set; } = "user";
     }
 
@@ -23,8 +21,6 @@ namespace HayvanBarinagi.Models
         [Required]
         [StringLength(50)]
         public string NameSurname { get; set; }
-
-        public bool Locked { get; set; }
 
         //[DataType(DataType.Password)]
         [Required(ErrorMessage = "Password is required.")]
@@ -56,8 +52,6 @@ namespace HayvanBarinagi.Models
         [Required]
         [StringLength(50)]
         public string NameSurname { get; set; }
-
-        public bool Locked { get; set; }
 
         [Required]
         [StringLength(50)]
