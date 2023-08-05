@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
+using HayvanBarinagi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HayvanBarinagi.Controllers
 {
-    //Bu SAYFAYA Admin OLAN KİŞİLER GIREBILIR
-
-    //[Authorize(Roles = "admin,manager")]
-
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        //[Authorize]
-        public IActionResult Index()
+        private readonly ILogger<HomeController> _logger;
+        private readonly DbContext _context;
+
+        public AdminController(ILogger<HomeController> logger, DbContext context)
         {
-            return View();
+            _logger = logger;
+            _context = context;
         }
+
     }
 }

@@ -7,7 +7,7 @@ namespace HayvanBarinagi.Entities
     public class User
     {
         [Key]
-        public int ?Id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50)]
         public String? NameSurname { get; set; }

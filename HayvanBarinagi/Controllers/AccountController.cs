@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.Claims;
 using HayvanBarinagi.Entities;
 using HayvanBarinagi.Models;
+using HayvanBarinagi.Data;
 
 namespace HayvanBarinagi.Controllers
 {
@@ -27,14 +28,13 @@ namespace HayvanBarinagi.Controllers
 		{
 			return View();
 		}
-
         [AllowAnonymous]
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
-				User user = _databaseContex.users.SingleOrDefault(x => x.UserName.ToLower() == model.UserName.ToLower()&& x.Password == model.Password);
+				User user = _databaseContex.Users.SingleOrDefault(x => x.UserName.ToLower() == model.UserName.ToLower()&& x.Password == model.Password);
 
 				if(user != null)
 				{
@@ -73,7 +73,7 @@ namespace HayvanBarinagi.Controllers
         {
             if (ModelState.IsValid)
             {
-				if(_databaseContex.users.Any(x=> x.UserName.ToLower()== model.UserName.ToLower()))
+				if(_databaseContex.Users.Any(x=> x.UserName.ToLower()== model.UserName.ToLower()))
 				{
                     ModelState.AddModelError(nameof(model.UserName), "Username is already exists.");
                     return View(model);
@@ -84,7 +84,7 @@ namespace HayvanBarinagi.Controllers
 					Password = model.Password
 				};
 
-				_databaseContex.users.Add(user);
+				_databaseContex.Users.Add(user);
 			   int affectedRowCount = _databaseContex.SaveChanges();
 
 				if(affectedRowCount ==0)
