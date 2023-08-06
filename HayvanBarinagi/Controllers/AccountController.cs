@@ -34,7 +34,7 @@ namespace HayvanBarinagi.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				User user = _databaseContex.Users.SingleOrDefault(x => x.UserName.ToLower() == model.UserName.ToLower()&& x.Password == model.Password);
+				User user = _databaseContex.Users.FirstOrDefault(x => x.UserName.ToLower() == model.UserName.ToLower()&& x.Password == model.Password);
 
 				if(user != null)
 				{
