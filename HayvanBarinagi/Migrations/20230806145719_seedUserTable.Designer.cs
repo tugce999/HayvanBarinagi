@@ -4,6 +4,7 @@ using HayvanBarinagi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HayvanBarinagi.Migrations
 {
     [DbContext(typeof(DatabaseContex))]
-    partial class DatabaseContexModelSnapshot : ModelSnapshot
+    [Migration("20230806145719_seedUserTable")]
+    partial class seedUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace HayvanBarinagi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("HayvanBarinagi.Models.Entities.User", b =>
+            modelBuilder.Entity("HayvanBarinagi.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,6 +58,35 @@ namespace HayvanBarinagi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9013),
+                            NameSurname = "Tuğçe",
+                            Password = "123",
+                            Role = "user",
+                            UserName = "tugce"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9025),
+                            NameSurname = "2112@sakarya.edu.tr",
+                            Password = "saü",
+                            Role = "admin",
+                            UserName = "2112@sakarya.edu.tr"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9027),
+                            NameSurname = "Tuğçe2",
+                            Password = "345",
+                            Role = "user",
+                            UserName = "tugce2"
+                        });
                 });
 #pragma warning restore 612, 618
         }

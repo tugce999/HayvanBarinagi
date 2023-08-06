@@ -1,4 +1,6 @@
-﻿<h1>UserList</h1>
+﻿@model List<HayvanBarinagi.Models.Entities.User>
+
+<h1>UserList</h1>
 
 <div class="container">
     <div class="row pt-4 pb-3">
@@ -14,7 +16,7 @@
         </div>
     </div>
     <table class="table table-bordered table-striped">
-        <thead>
+      <thead>
             <tr>
                 <th>
                     ID
@@ -38,33 +40,27 @@
             </tr>
         </thead>
         <tbody>
-
+            @foreach(var user in Model)
+            {
             <tr>
-                <td>ID</td>
-                <td>NameSurname</td>
-
-                <td> UserName</td>
-                <td>
-                    CreatedAdd
-                </td>
-               
-                <td>
-                    Role
-                </td>
-                <td>
-                    Display Order
-                </td>
-                <!--<td>
-                        <div class="w-75 btn-group" role="group">
-                            <a asp-controller="User" asp-action="Edit" asp-route-id="Id" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                            <a asp-page="/users/delete" asp-route-id="Id" class="btn btn-danger mx-2">
-                                <i class="bi bi-trash-fill"></i> Delete
-                            </a>
-                        </div>
-                    </td>-->
-                
+                    <td>@user.Id</td>
+                    <td>@user.NameSurname</td>
+                    <td> @user.UserName</td>
+                    <td> @user.CreatedAdd </td>
+                    <td> @user. Role</td>
+                    <td><a href="Users/View/@user.Id">View</a></td>
+            </tr>
+            }
+            <!--<td>
+                <div class="w-75 btn-group" role="group">
+                    <a asp-controller="User" asp-action="Edit" asp-route-id="Id" class="btn btn-primary mx-2">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                    <a asp-page="/users/delete" asp-route-id="Id" class="btn btn-danger mx-2">
+                        <i class="bi bi-trash-fill"></i> Delete
+                    </a>
+                </div>
+            </td>-->
         </tbody>
     </table>
 </div>

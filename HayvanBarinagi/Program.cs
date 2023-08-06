@@ -14,7 +14,7 @@ internal class Program
         // Add services to the container.
         object value = builder.Services.AddControllersWithViews();
 
-        builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+ 
         builder.Services.AddDbContext<DatabaseContex>(opts =>
         {
             opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

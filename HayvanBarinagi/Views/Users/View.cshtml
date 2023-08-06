@@ -1,20 +1,10 @@
-﻿@model LoginViewModel
-@{
-    ViewData["Title"] = "Login";
-}
+﻿@model UpdateUserViewModel
 
-
-<div class="row">
-    <div class="col-4 offset-4">
-        <h1 class="display-4 border-bottom text-center pb-2">@ViewData["Title"]</h1>
-    </div>
-</div>
-
-
+<h1>Edit User</h1>
 <div class="row">
     <div class="col-4 offset-4">
         <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
-       <form method="post">
+        <form method="post" action="View" class="mt-5">
             <div class="form-group mb-3">
                 <label asp-for="UserName" class="form-label">Username</label>
                 <input asp-for="UserName" class="form-control" placeholder="" />
@@ -33,10 +23,4 @@
             <div class="form-group d-grid mb-3">
                 <button type="submit" class="btn btn-primary d-block"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</button>
             </div>
-       </form>
-      
-            
-          
-        
-    </div>
-</div>
+        </form>

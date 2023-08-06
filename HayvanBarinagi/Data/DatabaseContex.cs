@@ -1,4 +1,6 @@
-﻿using HayvanBarinagi.Entities;
+﻿using HayvanBarinagi.Models;
+using HayvanBarinagi.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HayvanBarinagi.Data
@@ -12,9 +14,9 @@ namespace HayvanBarinagi.Data
 
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<Hayvan> Animals { get; set; }
-        public DbSet<Tur> Tür { get; set; }
-        public DbSet<Cins> Cins { get; set; }
-        public DbSet<OwnedType> OwnedType { get; set; }
+     
+
     }
-}
+    
+    }
+

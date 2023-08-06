@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Security.Claims;
-using HayvanBarinagi.Entities;
 using HayvanBarinagi.Models;
 using HayvanBarinagi.Data;
+using HayvanBarinagi.Models.Entities;
 
 namespace HayvanBarinagi.Controllers
 {
