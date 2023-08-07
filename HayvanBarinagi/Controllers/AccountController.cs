@@ -11,7 +11,7 @@ using HayvanBarinagi.Models.Entities;
 
 namespace HayvanBarinagi.Controllers
 {
-
+   
     public class AccountController : Controller
 	{
 		private readonly DatabaseContex _databaseContex;

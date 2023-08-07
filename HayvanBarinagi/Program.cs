@@ -1,4 +1,4 @@
-using HayvanBarinagi.Data;
+ï»¿using HayvanBarinagi.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis.Options;
@@ -31,13 +31,13 @@ internal class Program
                       .AddCookie(opts =>
                       {
                           opts.Cookie.Name = "HayvanBarinagi.auth";
-                          //Cookie ne kadar süre sonra geçersiz olacak onu belirttim.
+                          //Cookie ne kadar sÃ¼re sonra geÃ§ersiz olacak onu belirttim.
                           opts.ExpireTimeSpan = TimeSpan.FromDays(2);
-                          // Cookie süresinin uzatýlmasýný saðlar
+                          // Cookie sÃ¼resinin uzatÄ±lmasÄ±nÄ± saÄŸlar
                           opts.SlidingExpiration = false;
                           opts.LoginPath = "/Account/Login";
                           opts.LogoutPath = "/Account/Logout";
-                          // yetkisi olmadýðýnda kullanýcýnýn gideceði sayfa
+                          // yetkisi olmadÄ±ÄŸÄ±nda kullanÄ±cÄ±nÄ±n gideceÄŸi sayfa
                           opts.AccessDeniedPath = "/Home/AccessDenied";
                       });
 
