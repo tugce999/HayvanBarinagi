@@ -1,0 +1,55 @@
+﻿@model Animal
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html >
+
+<body>
+    <div class="child-main"> 
+        <ul class="address">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AnimalTypeId" class="control-label"></label>
+                            <select asp-for="AnimalTypeId" class="form-control" asp-items="ViewBag.AnimalTypeId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GenderTypeId" class="control-label"></label>
+                            <select asp-for="GenderTypeId" class="form-control" asp-items="ViewBag.GenderTypeId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Age" class="control-label"></label>
+                            <input asp-for="Age" class="form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OwnedTypeId" class="control-label"></label>
+                            <select asp-for="OwnedTypeId" class="form-control" asp-items="ViewBag.OwnedTypeId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Color" class="control-label"></label>
+                            <input asp-for="Color" class="form-control" />
+                            <span asp-validation-for="Color" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Oluştur" class="btn btn-primary" />
+                            <a asp-action="Index">Hayvan Listesine Geri Dön</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</body>
+</html>

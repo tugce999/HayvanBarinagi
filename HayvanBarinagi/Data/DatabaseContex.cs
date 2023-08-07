@@ -2,6 +2,7 @@
 using HayvanBarinagi.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 
 namespace HayvanBarinagi.Data
 {
@@ -14,9 +15,11 @@ namespace HayvanBarinagi.Data
 
         }
         public DbSet<User> Users { get; set; }
-     
+        public DbSet<Animal>Animals { get; set; }
+
+
 
     }
-    
+     
     }
 

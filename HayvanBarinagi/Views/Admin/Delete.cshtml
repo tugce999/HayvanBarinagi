@@ -1,37 +1,36 @@
 ﻿@model CreateViewModel
 <form method="post">
-    <input asp-for="Id" hidden />
+    <input asp-for="Id" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Edit User</h2>
+            <h2 class="text-primary">Delete User</h2>
             <hr />
         </div>
         @*<div asp-validation-summary="ModelOnly"></div>*@
         <div class="mb-3 row p-1">
             <label asp-for="Id" class="p-0"></label>
             <input asp-for="Id" class="form-control" />
-            <span asp-validation-for="Id" class="text-danger"></span>
+           
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="NameSurname" class="p-0"></label>
-            <input asp-for="NameSurname" class="form-control" />
-            <span asp-validation-for="NameSurname" class="text-danger"></span>
+            <input asp-for="NameSurname" disabled class="form-control" />
+            
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="UserName" class="p-0"></label>
-            <input asp-for="UserName" class="form-control" />
-            <span asp-validation-for="UserName" class="text-danger"></span>
+            <input asp-for="UserName" disabled class="form-control" />
+            
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="CreatedAdd " class="p-0"></label>
-            <input asp-for="CreatedAdd " class="form-control" />
-            <span asp-validation-for="CreatedAdd " class="text-danger"></span>
+            <input asp-for="CreatedAdd " disabled class="form-control" />
+           
         </div>
         <div class="mb-3 row p-1">
             <label asp-for="Role" class="p-0"></label>
-            <input asp-for="Role" class="form-control" />
-            <span asp-validation-for="Role" class="text-danger"></span>
-        </div>
+            <input asp-for="Role" disabled class="form-control" />
+            
         <div class="row">
             <div class="col-6 col-md-3">
                 <button type="submit" class="btn btn-primary form-control">Update</button>
@@ -46,8 +45,3 @@
 
     </div>
 </form>
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-}

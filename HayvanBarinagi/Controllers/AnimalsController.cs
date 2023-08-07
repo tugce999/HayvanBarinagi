@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using HayvanBarinagi.Data;
 using HayvanBarinagi.Models;
-using Microsoft.EntityFrameworkCore;
-using HayvanBarinagi.Data;
 using HayvanBarinagi.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HayvanBarinagi.Controllers
 {
-    //[Authorize(Roles = "admin,manager")]
     [Authorize(Roles = "admin")]
-    public class AdminController : Controller
+    public class AnimalsController : Controller
     {
         private readonly DatabaseContex _databaseContex;
 
-        public AdminController(DatabaseContex databaseContex)
+        public AnimalsController(DatabaseContex databaseContex)
         {
             _databaseContex = databaseContex;
         }
@@ -21,23 +20,23 @@ namespace HayvanBarinagi.Controllers
         //[Authorize]
         public IActionResult Index()
         {
-            List<User> objUserList = _databaseContex.Users.ToList();
-            return View(objUserList);
+            List<Animal> objAnimalList = _databaseContex.Animals.ToList();
+            return View(objAnimalList);
         }
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(User obj)
+        public IActionResult Create(Animal obj)
         {
-            if (obj.NameSurname == obj.NameSurname.ToString())
+            if (obj.Name== obj.Name.ToString())
             {
-                ModelState.AddModelError("NameSurneme", "The UserName cannot exactly match the name.");
+                ModelState.AddModelError("Name", "The UserName cannot exactly match the name.");
             }
             if (ModelState.IsValid)
             {
-                _databaseContex.Users.Add(obj);
+                _databaseContex.Animals.Add(obj);
                 _databaseContex.SaveChanges();
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
@@ -45,16 +44,16 @@ namespace HayvanBarinagi.Controllers
             return View();
         }
 
-        public IActionResult Edit(int? id )
+        public IActionResult Edit(int? id)
         {
-            if(id==null|| id==0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            User? userFromDb = _databaseContex.Users.Find(id);
-          
-            if (userFromDb == null)
+            Animal? animalFromDb = _databaseContex.Animals.Find(id);
+
+            if (animalFromDb == null)
             {
                 return NotFound();
             }
@@ -62,14 +61,14 @@ namespace HayvanBarinagi.Controllers
             return View(_databaseContex);
         }
         [HttpPost]
-        public IActionResult Edit(User obj)
+        public IActionResult Edit(Animal obj)
         {
-          
+
             if (ModelState.IsValid)
             {
-                _databaseContex.Users.Add(obj);
+                _databaseContex.Animals.Add(obj);
                 _databaseContex.SaveChanges();
-                TempData["success"] = "User created successfully";
+                TempData["success"] = "Animal created successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -82,31 +81,30 @@ namespace HayvanBarinagi.Controllers
                 return NotFound();
             }
 
-            User? userFromDb = _databaseContex.Users.Find(id);
-          
-            if (userFromDb == null)
+            Animal? animalFromDb = _databaseContex.Animals.Find(id);
+
+            if (animalFromDb == null)
             {
                 return NotFound();
             }
 
             return View(_databaseContex);
         }
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
             if (ModelState.IsValid)
             {
-                User obj = _databaseContex.Users.Find(id);
+                Animal obj = _databaseContex.Animals.Find(id);
                 if (obj == null)
                 {
                     return NotFound();
                 }
-                _databaseContex.Users.Remove(obj);
-                _databaseContex.SaveChanges(); 
+                _databaseContex.Animals.Remove(obj);
+                _databaseContex.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
     }
-
-}
+    }

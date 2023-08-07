@@ -38,7 +38,8 @@
             </tr>
         </thead>
         <tbody>
-
+            @foreach(var obj in Model)
+            {
             <tr>
                 <td>ID</td>
                 <td>NameSurname</td>
@@ -56,15 +57,16 @@
                 </td>
                 <td>
                         <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Admin" asp-action="Edit" asp-route-id="Id" class="btn btn-primary mx-2">
+                            <a asp-controller="User" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="Id" class="btn btn-danger mx-2">
+                            <a asp-controller="User" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
                                 <i class="bi bi-trash-fill"></i> Delete
                             </a>
                         </div>
                     </td>
-                
+            </tr>
+                }
         </tbody>
     </table>
 </div>

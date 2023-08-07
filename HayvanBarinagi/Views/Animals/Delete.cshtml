@@ -1,0 +1,75 @@
+﻿
+@model Animal
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<!DOCTYPE html>
+<html >
+
+<body>
+    <div class="main-section">
+        <div class="heading">
+            <h1>Hayvanın Bilgileri</h1>
+        </div>
+        <div class="child-main">
+            <div class="child-left">
+                @if (@Html.ViewData.Model.AnimalTypes.AnimalType == "At")
+                {
+                    <img src="~/web2/images/at.jpg" />
+                }
+                else if (@Html.ViewData.Model.AnimalTypes.AnimalType == "Esek")
+                {
+                    <img src="~/web2/images/esek.jpg" />
+                }
+                else if (@Html.ViewData.Model.AnimalTypes.AnimalType == "Köpek")
+                {
+                    <img src="~/web2/images/kopek.jpg" />
+                }
+                else if (@Html.ViewData.Model.AnimalTypes.AnimalType == "Kedi")
+                {
+                    <img src="~/web2/images/kedi.jpg" />
+                }
+            </div>
+            <div class="child-right">
+                <h3>@Html.DisplayFor(model => model.Name)</h3>
+                <h5>Hayvan Bilgisi</h5>
+                <ul class="address">
+                    <li>
+                        <ul class="agileits-address-text ">
+                            <li class="agile-it-adress-left"><b>Hayvanın Tipi</b></li>
+                            <li><span>:</span>@Html.DisplayFor(model => model.AnimalTypes.AnimalType)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="agileits-address-text">
+                            <li class="agile-it-adress-left"><b>Hayvanın Cinsiyeti</b></li>
+                            <li><span>:</span>@Html.DisplayFor(model => model.GenderType.Gender)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="agileits-address-text">
+                            <li class="agile-it-adress-left"><b>Hayvanın Yaşı</b></li>
+                            <li><span>:</span>@Html.DisplayFor(model => model.Age)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="agileits-address-text">
+                            <li class="agile-it-adress-left"><b>Hayvanın Rengi</b></li>
+                            <li><span>:</span>@Html.DisplayFor(model => model.Color)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" style="border-color:black"/> |
+                    <a asp-action="Index">Back to List</a>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+</html>
