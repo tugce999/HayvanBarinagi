@@ -4,6 +4,7 @@ using HayvanBarinagi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HayvanBarinagi.Migrations
 {
     [DbContext(typeof(DatabaseContex))]
-    partial class DatabaseContexModelSnapshot : ModelSnapshot
+    [Migration("20230807175703_d")]
+    partial class d
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,9 @@ namespace HayvanBarinagi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AnimalTypes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -45,8 +51,7 @@ namespace HayvanBarinagi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("sahip")
-                        .IsRequired()
+                    b.Property<string>("OwnedType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

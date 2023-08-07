@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HayvanBarinagi.Migrations
 {
     [DbContext(typeof(DatabaseContex))]
-    [Migration("20230806145719_seedUserTable")]
-    partial class seedUserTable
+    [Migration("20230807205804_t")]
+    partial class t
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,38 @@ namespace HayvanBarinagi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("HayvanBarinagi.Entities.User", b =>
+            modelBuilder.Entity("HayvanBarinagi.Models.Animal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GenderType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sahip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Animals");
+                });
+
+            modelBuilder.Entity("HayvanBarinagi.Models.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,35 +89,6 @@ namespace HayvanBarinagi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9013),
-                            NameSurname = "Tuğçe",
-                            Password = "123",
-                            Role = "user",
-                            UserName = "tugce"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9025),
-                            NameSurname = "2112@sakarya.edu.tr",
-                            Password = "saü",
-                            Role = "admin",
-                            UserName = "2112@sakarya.edu.tr"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAdd = new DateTime(2023, 8, 6, 17, 57, 19, 148, DateTimeKind.Local).AddTicks(9027),
-                            NameSurname = "Tuğçe2",
-                            Password = "345",
-                            Role = "user",
-                            UserName = "tugce2"
-                        });
                 });
 #pragma warning restore 612, 618
         }

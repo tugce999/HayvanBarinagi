@@ -107,6 +107,13 @@ namespace HayvanBarinagi.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IEnumerable<User> tugce()
+        {
+            var tugce = from n in _databaseContex.Users.Where(n => n.UserName == "tugce")
+                        select n;
+            return tugce.ToList();
+        }
     }
 
 }

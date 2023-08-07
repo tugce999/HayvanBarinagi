@@ -5,34 +5,32 @@
 namespace HayvanBarinagi.Migrations
 {
     /// <inheritdoc />
-    public partial class loginpdate : Migration
+    public partial class p : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Password",
-                table: "Users",
-                type: "nvarchar(50)",
-                maxLength: 50,
-                nullable: false,
-                defaultValue: "",
+                name: "sahip",
+                table: "Animals",
+                type: "nvarchar(max)",
+                nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+                oldType: "nvarchar(max)");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Password",
-                table: "Users",
+                name: "sahip",
+                table: "Animals",
                 type: "nvarchar(max)",
-                nullable: true,
+                nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
-                oldMaxLength: 50);
+                oldType: "nvarchar(max)",
+                oldNullable: true);
         }
     }
 }

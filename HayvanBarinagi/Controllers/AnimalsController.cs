@@ -25,23 +25,20 @@ namespace HayvanBarinagi.Controllers
         }
         public IActionResult Create()
         {
+
             return View();
         }
         [HttpPost]
         public IActionResult Create(Animal obj)
         {
-            if (obj.Name== obj.Name.ToString())
-            {
-                ModelState.AddModelError("Name", "The UserName cannot exactly match the name.");
-            }
-            if (ModelState.IsValid)
-            {
+            
+            
                 _databaseContex.Animals.Add(obj);
                 _databaseContex.SaveChanges();
                 TempData["success"] = "User created successfully";
                 return RedirectToAction("Index");
-            }
-            return View();
+            
+           
         }
 
         public IActionResult Edit(int? id)
@@ -51,14 +48,14 @@ namespace HayvanBarinagi.Controllers
                 return NotFound();
             }
 
-            Animal? animalFromDb = _databaseContex.Animals.Find(id);
+            Animal? databaseContex = _databaseContex.Animals.Find(id);
 
-            if (animalFromDb == null)
+            if (databaseContex == null)
             {
                 return NotFound();
             }
 
-            return View(_databaseContex);
+            return View(databaseContex);
         }
         [HttpPost]
         public IActionResult Edit(Animal obj)
@@ -74,37 +71,45 @@ namespace HayvanBarinagi.Controllers
             return View();
         }
 
-        public IActionResult Delete(int? id)
+        public IActionResult Delete()
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            Animal? animalFromDb = _databaseContex.Animals.Find(id);
-
-            if (animalFromDb == null)
-            {
-                return NotFound();
-            }
-
-            return View(_databaseContex);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            if (ModelState.IsValid)
-            {
-                Animal obj = _databaseContex.Animals.Find(id);
-                if (obj == null)
-                {
-                    return NotFound();
-                }
-                _databaseContex.Animals.Remove(obj);
-                _databaseContex.SaveChanges();
-                return RedirectToAction("Index");
-            }
             return View();
+        }
+        [HttpPost]
+        public IActionResult Delete(Animal obj)
+        {
+
+            _databaseContex.Animals.Add(obj);
+            _databaseContex.SaveChanges();
+            TempData["success"] = "Animal deleted successfully";
+            return RedirectToAction("Index");
+        }
+        public IActionResult Listele()
+        {
+            List<Animal> objAnimalList = _databaseContex.Animals.ToList();
+            return View(objAnimalList);
+        }
+        public IActionResult Sahiplen(int id)
+        {
+            Animal sahiplenilen = _databaseContex.Animals.FirstOrDefault(x => x.Id == id);
+            sahiplenilen.sahip = User.Identity.Name;
+            _databaseContex.Animals.Update(sahiplenilen);
+            _databaseContex.SaveChanges(true);
+            return  RedirectToAction("Index");
+        }
+
+        public IActionResult Listele2()
+        {
+            List<Animal> objAnimalList = _databaseContex.Animals.ToList();
+            return View(objAnimalList);
+        }
+        public IActionResult Sahiplenilen(int sahiplenilen.Id)
+        {
+            Animal sahiplenilen = _databaseContex.Animals.FirstOrDefault(x =>x.sahip == sahiplenilen.Id);
+            sahiplenilen.sahip = User.Identity.Name;
+            _databaseContex.Animals.Update(sahiplenilen);
+            _databaseContex.SaveChanges(true);
+            return RedirectToAction("Index");
         }
     }
     }
