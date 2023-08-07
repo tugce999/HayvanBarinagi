@@ -17,7 +17,7 @@ namespace HayvanBarinagi.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Animal>Animals { get; set; }
 
-
+     
 
     }
      

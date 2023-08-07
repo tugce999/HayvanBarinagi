@@ -1,10 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Localizer["title"];
 }
 ﻿<style>
      .hero {
-         background-image: url('https://l24.im/LaF102 '); 
-         background-size: cover;
+         background-image: url('https://l24.im/PUegy 2 '); background-size: cover;
          background-position: center;
          color: black;
          padding: 60px 0;
@@ -56,9 +55,9 @@
 <div class="hero">
     <div class="container">
         <div class="text-background">
-            <h1 class="display-4">Dost Edinin</h1>
-            <p class="lead">Bir hayvana umut olun!</p>
-            <a href="/Hayvanlar" class="btn btn-outline-dark btn-lg">Arkadaşını Sahiplen</a>
+            <h1 class="display-4">@Localizer["Dost Edinin"]</h1>
+            <p class="lead">@Localizer["Bir hayvana umut olun!"]</p>
+            <a href="/Hayvanlar" class="btn btn-outline-dark btn-lg">@Localizer["Arkadaşını Sahiplen"]</a>
         </div>
     </div>
 </div>

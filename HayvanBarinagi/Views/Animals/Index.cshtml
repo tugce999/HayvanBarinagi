@@ -1,102 +1,96 @@
-﻿@model IEnumerable<Animal>
+﻿@model List<Animal>
+<h1>AnimalList</h1>
 
-@{
-    ViewData["Title"] = "Index";
-}
-<html>
-<head>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/js/site.js"></script>
-</head>
-<p>
-    <a href="~/../../Animals/Create" class="btn btn-success">Yeni Hayvan</a>
-    <a href="~/../../Admins/Index" class="btn btn-success">Kullanıcılar</a>
-    <a href="~/../../Login/GirisYap" class="btn btn-danger" onclick="deleteAllCookies()">Çıkış</a>
-</p>
-<body >
-    <table id="animalIndex" class="table"> 
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnimalTypes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GenderType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OwnedType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-            @foreach (var item in Model)
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Animal List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="User" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>  Create New Animals
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    AnimalTypeId
+                </th>
+                <th>
+                    AnimalTypes
+                </th>
+                <th>
+                    GenderTypeId
+                </th>
+                <th>
+                    GenderType
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    OwnedTypeId
+                </th>
+                <th>
+                    OwnedType
+                </th>
+                <th>
+                    Color
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
             {
-                if (item.OwnedType.Owned != "Sahipli")
-                {
-                <tr id="newRow+@Html.DisplayFor(modelItem => item.Id)">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AnimalTypes.AnimalType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GenderType.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Age)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.OwnedType.Owned)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Color)
-                    </td>
-                    <td>
-                        <a href="~/../../Animals/Details/@Html.DisplayFor(modelItem => item.Id)" class="btn btn-default" style="background-color:#dee61d">Detaylar</a>
-                    </td>
-                    <script type="text/javascript">
-                          if (localStorage.getItem("isAdmin") == 'true') {
-                              var row = document.getElementById("newRow+@Html.DisplayFor(modelItem => item.Id)");
-                             var columnCount = row.cells.length;
-                             var x = row.insertCell(columnCount);
-                             x.innerHTML = '<td><a href="~/../../Animals/Delete/' + @Html.DisplayFor(modelItem => item.Id) + '"' + ' class="btn btn-danger">Sil</a></td>';
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
 
-                             columnCount = row.cells.length;
-                             var edit = row.insertCell(columnCount);
-                             edit.innerHTML = '<td><a href="~/../../Animals/Edit/' + @Html.DisplayFor(modelItem => item.Id) + '"' + ' class="btn btn-success">Edit</a></td>';
-                          }
-                    </script>
+                    <td> AnimalTypeId</td>
+                    <td>
+                        AnimalTypes
+                    </td>
+
+                    <td>
+                        GenderTypeId
+                    </td>
+                    <td>
+                        GenderType
+                    </td>
+                    <td>
+                        Age
+                    </td>
+                    <td>
+                        OwnedTypeId
+                    </td>
+                    <td>
+                        OwnedType
+                    </td>
+                    <td>
+                        Color
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="User" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="User" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
                 </tr>
-                }
             }
+        </tbody>
     </table>
-</body>
-</html>
+</div>

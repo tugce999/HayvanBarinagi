@@ -23,10 +23,31 @@ namespace HayvanBarinagi.Controllers
             return View();
         }
 
+        
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+
+        public IActionResult GetData()
+        {
+            return Json(new{ Name="Tugce", SurName="Ardeç" });
+        }
+
+        [HttpPost]
+
+        public IActionResult PostData([FromBody]PostDataApiModel model)
+        {
+            return Json(new { Error=false,Message="Success" });
         }
     }
 }

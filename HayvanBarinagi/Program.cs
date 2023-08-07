@@ -1,6 +1,9 @@
 using HayvanBarinagi.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 using System.Security.Policy;
 
@@ -9,12 +12,15 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+       
 
         // Add services to the container.
         object value = builder.Services.AddControllersWithViews();
+        builder.Services.AddLocalization(Option => Option.ResourcesPath="Resources");
+        builder.Services.AddRazorPages()
+            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+            .AddDataAnnotationsLocalization();
 
- 
         builder.Services.AddDbContext<DatabaseContex>(opts =>
         {
             opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -37,7 +43,11 @@ internal class Program
 
 
         var app = builder.Build();
-
+        var supportedCultures = new[] { "en","tr"};
+        var LocalizationOption = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+            .AddSupportedCultures(supportedCultures)
+            .AddSupportedCultures(supportedCultures);
+        app.UseRequestLocalization(LocalizationOption);
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {

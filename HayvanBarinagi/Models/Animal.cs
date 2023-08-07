@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HayvanBarinagi.Models
 {
+    [Table("Animals")]
     public class Animal
     {
         [Key]
