@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 using System.Security.Policy;
+using HayvanBarinagi.Controllers;
+using HayvanBarinagi.Models;
 
 internal class Program
 {
@@ -41,6 +43,10 @@ internal class Program
                           opts.AccessDeniedPath = "/Home/AccessDenied";
                       });
 
+                    builder.Services.AddEndpointsApiExplorer();
+
+                    builder.Services.AddSwaggerGen();
+
 
         var app = builder.Build();
         var supportedCultures = new[] { "en","tr"};
@@ -64,6 +70,8 @@ internal class Program
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                    app.MapAnimalEndpoints();
 
         app.Run();
     }

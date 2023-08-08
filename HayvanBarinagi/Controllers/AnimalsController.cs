@@ -1,8 +1,10 @@
-﻿using HayvanBarinagi.Data;
+﻿using DocumentFormat.OpenXml.InkML;
+using HayvanBarinagi.Data;
 using HayvanBarinagi.Models;
 using HayvanBarinagi.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HayvanBarinagi.Controllers
@@ -11,13 +13,13 @@ namespace HayvanBarinagi.Controllers
     public class AnimalsController : Controller
     {
         private readonly DatabaseContex _databaseContex;
+        private object animal;
 
         public AnimalsController(DatabaseContex databaseContex)
         {
             _databaseContex = databaseContex;
         }
 
-        //[Authorize]
         public IActionResult Index()
         {
             List<Animal> objAnimalList = _databaseContex.Animals.ToList();
@@ -31,14 +33,12 @@ namespace HayvanBarinagi.Controllers
         [HttpPost]
         public IActionResult Create(Animal obj)
         {
-            
-            
-                _databaseContex.Animals.Add(obj);
-                _databaseContex.SaveChanges();
-                TempData["success"] = "User created successfully";
-                return RedirectToAction("Index");
-            
-           
+
+            _databaseContex.Animals.Add(obj);
+            _databaseContex.SaveChanges();
+            TempData["success"] = "Animal created successfully";
+            return RedirectToAction("Index");
+
         }
 
         public IActionResult Edit(int? id)
@@ -84,32 +84,27 @@ namespace HayvanBarinagi.Controllers
             TempData["success"] = "Animal deleted successfully";
             return RedirectToAction("Index");
         }
-        public IActionResult Listele()
-        {
-            List<Animal> objAnimalList = _databaseContex.Animals.ToList();
-            return View(objAnimalList);
-        }
-        public IActionResult Sahiplen(int id)
-        {
-            Animal sahiplenilen = _databaseContex.Animals.FirstOrDefault(x => x.Id == id);
-            sahiplenilen.sahip = User.Identity.Name;
-            _databaseContex.Animals.Update(sahiplenilen);
-            _databaseContex.SaveChanges(true);
-            return  RedirectToAction("Index");
-        }
+            public IActionResult Listele()
+            {
+                List<Animal> objAnimalList = _databaseContex.Animals.ToList();
+                return View(objAnimalList);
+            }
+            public IActionResult Sahiplen(int id)
+            {
+                Animal sahiplenilen = _databaseContex.Animals.FirstOrDefault(x => x.Id == id);
+                sahiplenilen.sahip = User.Identity.Name;
+                _databaseContex.Animals.Update(sahiplenilen);
+                _databaseContex.SaveChanges(true);
+                return  RedirectToAction("Index");
+            }
+           public IActionResult Listele2()
+            {
+                List<Animal> objAnimalList = _databaseContex.Animals.Where(x => x.sahip == User.Identity.Name).ToList();
+                return View(objAnimalList);
+            }
 
-        public IActionResult Listele2()
-        {
-            List<Animal> objAnimalList = _databaseContex.Animals.ToList();
-            return View(objAnimalList);
-        }
-        public IActionResult Sahiplenilen(int sahiplenilen.Id)
-        {
-            Animal sahiplenilen = _databaseContex.Animals.FirstOrDefault(x =>x.sahip == sahiplenilen.Id);
-            sahiplenilen.sahip = User.Identity.Name;
-            _databaseContex.Animals.Update(sahiplenilen);
-            _databaseContex.SaveChanges(true);
-            return RedirectToAction("Index");
-        }
+
+      
+
     }
-    }
+}

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HayvanBarinagi.Migrations
 {
     [DbContext(typeof(_databaseContex))]
-    [Migration("20230807204916_p")]
-    partial class p
+    [Migration("20230807230022_i")]
+    partial class i
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,7 @@ namespace HayvanBarinagi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("sahip")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

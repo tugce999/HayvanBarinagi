@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HayvanBarinagi.Migrations
 {
-    [DbContext(typeof(DatabaseContex))]
+    [DbContext(typeof(_databaseContex))]
     [Migration("20230807203056_ö")]
     partial class ö
     {
